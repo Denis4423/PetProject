@@ -1,15 +1,15 @@
-import type { Request, Response } from "express";
 import { prisma } from "../prisma";
-import type { UserType } from "../types/userType";
+import { User } from "../types/userType";
+import type { Request, Response } from "express";
 
 export const createUser = async (req: Request, res: Response) => {
     try {
-        const userData: UserType = req.body;
+        const userData: User = req.body;
 
         const user = await prisma.user.create({
             data: {
                 email: userData.email,
-                password: userData.password,
+                password: userData.password
             }
         });
 
